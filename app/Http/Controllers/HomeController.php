@@ -25,6 +25,7 @@ class HomeController extends Controller
     public function index()
     {
         $posts = Post::all();
-        return view('home', compact('posts'));
+         $jPosts = response()->json(Post::get(), 200);
+        return view('home', compact('posts', 'jPosts'));
     }
 }

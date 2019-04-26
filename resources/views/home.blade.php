@@ -19,19 +19,23 @@
                                 <th>No</th>
                                 <th>Title</th>
                                 <th>Comment</th>
-                                <th>Created By</th>
+                                {{-- <th>Created By</th> --}}
                                 <th>Created At</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php $no=1; ?>
-                            @foreach ($posts as $post)
+                            <?php
+                                $no=1;
+                                // var_dump($jPosts);
+                                // var_dump($jPosts->getData());
+                                ?>
+                            @foreach ($jPosts->getData() as $post)
                                 <tr>
                                     <td>{{ $no }}</td>
                                     <td>{{ $post->title }}</td>
                                     <td>{{ $post->comment }}</td>
-                                    <td>{{ $post->created_by }}</th>
+                                    {{-- <td>{{ $post->created_by ? $post->created_by : '' }}</th> --}}
                                     <td>{{ $post->created_at }}</th>
                                     <td>
                                         <a href="{{ route('post.form', $post->_id) }}" class="btn btn-warning btn-small">Update</a>
