@@ -8,8 +8,12 @@ use Illuminate\Http\Request;
 class PostController extends Controller
 {
     //
-    public function form(){
-        return view('post.form');
+    public function form($_id = false){
+        if($_id){
+            $data = Post::findOrFail($_id);
+        }
+        $data = false;
+        return view('post.form', compact('data'));
     }
 
     public function save(Request $request){
@@ -21,6 +25,27 @@ class PostController extends Controller
             return redirect()->route('home');
         } else {
             return back();
+        }
+    }
+
+    public function update(Request $request, $_id){
+        $data = Post::findOrFail($_id);
+        $data->title = $request->title;
+        $data->comment = $request->comment;
+        $data->save();
+        if($data){
+            return redirect()->route('home');
+        } else {
+            return back();
+        }
+    }
+
+    public function delete($_id){
+        $data = Post::destroy($_id);
+        if($data){
+            return redirect()->route('home');
+        } else {
+            return dd('cannot delete this post');
         }
     }
 }

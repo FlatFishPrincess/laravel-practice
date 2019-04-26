@@ -18,5 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/post', 'PostController@form')->name('post.form');
+Route::get('/post/{_id?}', 'PostController@form')->name('post.form'); //? means not a mandatory
 Route::post('/post/save', 'PostController@save')->name('post.save');
+Route::put('/post/update/{_id}', 'PostController@update')->name('post.update');
+Route::get('/post/delete/{_id}', 'PostController@delete')->name('post.delete');
