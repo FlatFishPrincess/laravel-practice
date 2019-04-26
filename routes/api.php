@@ -16,3 +16,9 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('posts', 'PostApiController@index');
+Route::get('post/{_id}', 'PostApiController@show');
+Route::post('post/add', 'PostApiController@add');
+Route::put('post/update/{post}', 'PostApiController@update');
+Route::delete('post/delete/{_id}', 'PostApiController@delete');
