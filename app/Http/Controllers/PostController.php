@@ -9,10 +9,11 @@ class PostController extends Controller
 {
     //
     public function form($_id = false){
+        $data = false;
         if($_id){
             $data = Post::findOrFail($_id);
+            // return view('post.form', compact('data'));
         }
-        $data = false;
         return view('post.form', compact('data'));
     }
 
